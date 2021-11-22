@@ -73,7 +73,11 @@ define([
     './hyperlink/plugin',
     './clock/plugin',
     './timer/plugin',
-    './DeviceClassifier/plugin'
+    './DeviceClassifier/plugin',
+    './RealtimeTelemetry/plugin',
+    './HistoricalTelemetry/plugin',
+    './fprimeObject/plugin',
+    './satelliteObject/plugin'
 ], function (
     _,
     UTCTimeSystem,
@@ -127,7 +131,11 @@ define([
     Hyperlink,
     Clock,
     Timer,
-    DeviceClassifier
+    DeviceClassifier,
+    RealtimeTelemetry,
+    HistoricalTelemetry,
+    fprimeObject,
+    satelliteObject
 ) {
     const bundleMap = {
         LocalStorage: 'platform/persistence/local',
@@ -236,6 +244,10 @@ define([
     plugins.Clock = Clock.default;
     plugins.Timer = Timer.default;
     plugins.DeviceClassifier = DeviceClassifier.default;
+    plugins.RealtimeTelemetry = RealtimeTelemetry;
+    plugins.HistoricalTelemetry = HistoricalTelemetry;
+    plugins.fprimeObject = fprimeObject;
+    plugins.satelliteObject = satelliteObject;
 
     return plugins;
 });

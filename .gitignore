@@ -47,3 +47,7 @@ package-lock.json
 
 #codecov artifacts
 codecov
+
+#Satellite Metadata
+src/plugins/satelliteObject/metadata/
+src/plugins/fprimeObject/metadata/

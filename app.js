@@ -13,10 +13,11 @@ const express = require('express');
 const app = express();
 const fs = require('fs');
 const request = require('request');
+const ip = require('ip');
 
 // Defaults
 options.port = options.port || options.p || 8080;
-options.host = options.host || 'localhost';
+options.host = options.host || ip.address() || 'localhost';
 options.directory = options.directory || options.D || '.';
 
 // Show command line options
@@ -76,3 +77,6 @@ app.get('/', function (req, res) {
 app.listen(options.port, options.host, function() {
     console.log('Open MCT application running at %s:%s', options.host, options.port)
 });
+
+app.use(express['static'](options.directory));
+
