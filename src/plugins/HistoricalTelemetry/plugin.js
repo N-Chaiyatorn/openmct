@@ -8,7 +8,7 @@ define([
 
 ) {
 
-    function HistoricalTelemetryPlugin(desired_domain_object_type, target, IP, port) {
+    function HistoricalTelemetryPlugin(desired_domain_object_type, IP, port) {
     //function HistoricalTelemetryPlugin() {
 
         return function install(openmct) {
@@ -18,17 +18,15 @@ define([
                     return domainObject.type === desired_domain_object_type;
                 },
                 request: function (domainObject, options) {
-                    var url = 'http://' + IP + ':' + port + '/history/' + target + '/'
+                    var url = 'http://' + IP + ':' + port + '/history/'
                         + domainObject.identifier.key
                         + '?start=' + options.start
                         + '&end=' + options.end;
-                    console.log('historical-telemetry-plugin.js: send request = ' + url);
 
                     return fetch(url).then(function (resp) {
-                        console.log(resp);
-                        return resp.json();
+                        const data = resp.json()
+                        return data;
                     });
-                    
                 }
             };
 

@@ -1,1 +1,1 @@
-web: node app.js --port $PORT
+web: npm run pm2

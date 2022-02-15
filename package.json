@@ -77,7 +77,8 @@
   "scripts": {
     "clean": "rm -rf ./dist /node_modules; rm package-lock.json",
     "clean-test-lint": "npm run clean; npm install ; npm run test; npm run lint",
-    "start": "node app.js",
+    "start": "node --no-warnings app.js",
+    "pm2": "./node_modules/pm2/bin/pm2-runtime app.js -- --port 5000 -i max",
     "lint": "eslint platform example src --ext .js,.vue openmct.js",
     "lint:fix": "eslint platform example src --ext .js,.vue openmct.js --fix",
     "build:prod": "cross-env NODE_ENV=production webpack",
@@ -99,12 +100,13 @@
     "url": "https://github.com/nasa/openmct.git"
   },
   "engines": {
-    "node": ">=10.10.2 <16.0.0"
+    "node": "8.10"
   },
   "author": "",
   "license": "Apache-2.0",
   "private": true,
   "dependencies": {
-    "ip": "^1.1.5"
+    "ip": "^1.1.5",
+    "pm2": "^5.1.2"
   }
 }

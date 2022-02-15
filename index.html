@@ -199,6 +199,18 @@
         openmct.install(openmct.plugins.Clock({ enableClockIndicator: true }));
         openmct.install(openmct.plugins.Timer());
 
+        openmct.install(openmct.plugins.fprimeObject({namespace: 'Ref'}));
+        openmct.install(openmct.plugins.RealtimeTelemetry('Ref.telemetry', 'Ref', '192.168.0.77', 16969));
+
+        openmct.install(openmct.plugins.satelliteObject({namespace: 'development'}));
+        openmct.install(openmct.plugins.HistoricalTelemetry('development.telemetry', '192.168.0.77', 16969));
+        openmct.install(openmct.plugins.RealtimeTelemetry('development.telemetry', 'development', '192.168.0.77', 16969));
+
+        openmct.install(openmct.plugins.satelliteObject({namespace: 'odc1'}));
+        openmct.install(openmct.plugins.RealtimeTelemetry('odc1.telemetry', 'odc1', '192.168.0.77', 16969));
+
+        openmct.install(openmct.plugins.satelliteObject({namespace: 'mu'}));
+
         openmct.start();
     </script>
 </html>
