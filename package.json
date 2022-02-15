@@ -92,8 +92,7 @@
     "verify": "concurrently 'npm:test' 'npm:lint'",
     "jsdoc": "jsdoc -c jsdoc.json -R API.md -r -d dist/docs/api",
     "otherdoc": "node docs/gendocs.js --in docs/src --out dist/docs --suppress-toc 'docs/src/index.md|docs/src/process/index.md'",
-    "docs": "npm run jsdoc ; npm run otherdoc",
-    "prepare": "npm run build:prod"
+    "docs": "npm run jsdoc ; npm run otherdoc"
   },
   "repository": {
     "type": "git",
