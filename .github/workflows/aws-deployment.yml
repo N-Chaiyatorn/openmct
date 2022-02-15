@@ -37,7 +37,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: ap-southeast-2
           application_name: openmct
-          environment_name: Openmct-env
+          environment_name: openmct-env-1
           version_label: "openmct-${{ steps.formatted-time.outputs.replaced }}"
           deployment_package: deployment.zip
 
