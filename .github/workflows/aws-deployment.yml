@@ -1,0 +1,42 @@
+name: aws Deployment
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Latest Repo
+        uses: actions/checkout@v2
+
+      - name: Generate Deployment Package
+        run: zip -r deployment.zip * -x "**node_modules**"
+
+      - name: Current Time
+        uses: gerred/current-time@v1.0.0
+        id: current-time
+          
+      - name: Replace string
+        uses: frabert/replace-string-action@v2.0
+        id: formatted-time
+        with:
+          pattern: '[:\.]+'
+          string: "${{ steps.current-time.outputs.time }}"
+          replace-with: '-'
+          flags: 'g'
+          
+      - name: Beanstalk Deploy
+        uses: einaregilsson/beanstalk-deploy@v20
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: ap-southeast-2
+          application_name: openmct
+          version_label: "openmct-${{ steps.formatted-time.outputs.replaced }}"
+          deployment_package: deployment.zip
+
