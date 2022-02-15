@@ -78,7 +78,7 @@
     "clean": "rm -rf ./dist /node_modules; rm package-lock.json",
     "clean-test-lint": "npm run clean; npm install ; npm run test; npm run lint",
     "start": "node --no-warnings app.js",
-    "deploy": "npm install && ./node_modules/pm2/bin/pm2-runtime app.js -- --port 5000 -i max",
+    "deploy": "npm install && ./node_modules/pm2/bin/pm2-runtime app.js -- --port 8080 -i max",
     "lint": "eslint platform example src --ext .js,.vue openmct.js",
     "lint:fix": "eslint platform example src --ext .js,.vue openmct.js --fix",
     "build:prod": "cross-env NODE_ENV=production webpack",
